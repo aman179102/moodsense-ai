@@ -1,4 +1,5 @@
 
+
 # Prometheus configuration for MoodSense AI monitoring
 global:
   scrape_interval: 15s
