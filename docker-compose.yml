@@ -1,0 +1,131 @@
+# =============================================================================
+# MoodSense AI - Docker Compose Configuration
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------------------------
+  # API Service
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: moodsense-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - API_WORKERS=2
+      - LOG_LEVEL=INFO
+      - MODEL_PATH=/app/models
+    volumes:
+      - ./models:/app/models:ro
+      - ./logs:/app/logs
+    networks:
+      - moodsense-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # ---------------------------------------------------------------------------
+  # Gradio UI Service
+  # ---------------------------------------------------------------------------
+  gradio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: moodsense-gradio
+    ports:
+      - "7860:7860"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - MODEL_PATH=/app/models
+    volumes:
+      - ./models:/app/models:ro
+    networks:
+      - moodsense-network
+    command: ["python", "gradio_app.py", "--host", "0.0.0.0", "--port", "7860"]
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+
+  # ---------------------------------------------------------------------------
+  # MLflow Tracking Server (Optional)
+  # ---------------------------------------------------------------------------
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.8.0
+    container_name: moodsense-mlflow
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=sqlite:///mlflow/mlflow.db
+      - MLFLOW_DEFAULT_ARTIFACT_ROOT=/mlflow/artifacts
+    volumes:
+      - mlflow-data:/mlflow
+    networks:
+      - moodsense-network
+    command: mlflow server --host 0.0.0.0 --port 5000
+    restart: unless-stopped
+    profiles:
+      - mlops
+
+  # ---------------------------------------------------------------------------
+  # Prometheus (Optional - for monitoring)
+  # ---------------------------------------------------------------------------
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: moodsense-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - moodsense-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # ---------------------------------------------------------------------------
+  # Grafana (Optional - for dashboards)
+  # ---------------------------------------------------------------------------
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: moodsense-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=moodsense
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - moodsense-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  mlflow-data:
+  grafana-data:
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  moodsense-network:
+    driver: bridge
