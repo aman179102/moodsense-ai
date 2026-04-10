@@ -418,6 +418,7 @@ python serve.py --host 0.0.0.0 --port 8000 --workers 4
 
 - Gradio UI with mood prediction
  <img width="1680" height="1050" alt="2026-04-11-003406_1680x1050_scrot" src="https://github.com/user-attachments/assets/d6876032-7cfa-4532-802a-563e258eabd7" />
+ 
 - API documentation page
  <img width="1680" height="1050" alt="2026-04-11-003126_1680x1050_scrot" src="https://github.com/user-attachments/assets/8f5d1c05-cd44-4417-8ab4-28d1b4c17183" />
 
