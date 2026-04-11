@@ -23,6 +23,11 @@
 </p>
 
 ---
+##  Live Demo
+
+ Try it here: [Link](https://huggingface.co/spaces/aman179102/moodsense-ai)
+
+---
 
 ## Overview
 
@@ -36,6 +41,14 @@ MoodSense AI is a production-grade, full-stack application that detects emotiona
 - **Production API**: RESTful API built with FastAPI for easy integration
 - **Interactive UI**: Beautiful Gradio interface for immediate testing
 - **Containerized**: Docker support for seamless deployment
+
+  ## 💡 Why MoodSense AI?
+
+Unlike basic sentiment analysis tools, MoodSense AI:
+- Detects 8 distinct emotions
+- Provides explainable predictions
+- Combines ML + recommendation system
+- Ready for production deployment
 
 ---
 
