@@ -1,4 +1,6 @@
 
+
+
 <h1 align="center">
   MoodSense AI
 </h1>
@@ -416,18 +418,24 @@ python serve.py --host 0.0.0.0 --port 8000 --workers 4
 
 *Screenshots will be added here showing:*
 
-- Gradio UI with mood prediction
+- UI
  <img width="1680" height="1050" alt="2026-04-11-003406_1680x1050_scrot" src="https://github.com/user-attachments/assets/d6876032-7cfa-4532-802a-563e258eabd7" />
+
+- Gradio UI with mood prediction
+
+<img width="1464" height="718" alt="2026-04-11-152926_1680x1050_scrot" src="https://github.com/user-attachments/assets/af429d0e-8702-4332-8704-5017b1a68a95" />
+
  
 - API documentation page
  <img width="1680" height="1050" alt="2026-04-11-003126_1680x1050_scrot" src="https://github.com/user-attachments/assets/8f5d1c05-cd44-4417-8ab4-28d1b4c17183" />
 
 - Recommendation results
-
+ <img width="1466" height="825" alt="2026-04-11-152837_1680x1050_scrot" src="https://github.com/user-attachments/assets/117d077b-ebc9-443a-92ef-ad871a334622" />
   
 - Probability distribution chart
 
-  
+    <img width="1630" height="769" alt="2026-04-11-152900_1680x1050_scrot" src="https://github.com/user-attachments/assets/8b01c2b0-96e7-4688-8242-74197a802db6" />
+
 
 ---
 
