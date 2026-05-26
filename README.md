@@ -555,6 +555,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [FastAPI](https://fastapi.tiangolo.com) for the web framework
 - [Gradio](https://gradio.app) for the UI components
 
+## 🌍 Public Mentions
+
+MoodSense AI has been discovered and mentioned across independent AI platforms.
+
+- 📰 **Covered by Khoal.ai**  
+  MoodSense AI was covered in an AI-focused article for LATAM and Brazil audiences, highlighting its mood detection, confidence scores, FastAPI API, Gradio UI, and Hugging Face demo.
+
+- 🔎 **Listed on FindMyAI**  
+  MoodSense AI was indexed as an AI tool for emotion detection and personalized recommendations.
+
+[![Khoal.ai Coverage](https://img.shields.io/badge/Covered%20by-Khoal.ai-blueviolet?style=for-the-badge)](https://khoal.ai/es/noticias/moodsense-ai-herramienta-de-deteccion-de-estados-de-animo)
+[![FindMyAI Listing](https://img.shields.io/badge/Listed%20on-FindMyAI-blue?style=for-the-badge)](https://findmy.ai.kr/service/moodsense-ai-a-hugging-face-space-by-aman179102)
+
 ---
 
 <p align="center">
